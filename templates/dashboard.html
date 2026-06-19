@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Dashboard - Coding Club</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Coding Club</h2>
+
+```
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+```
+
+</div>
+
+<div class="main-content">
+
+```
+<h1>Welcome {{ username }}</h1>
+
+<div class="stats-container">
+
+    <div class="card">
+        <h3>Total Files</h3>
+        <p>{{ files|length }}</p>
+    </div>
+
+</div>
+
+<div class="file-section">
+
+    <h2>Available Files</h2>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search files..."
+    >
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>File</th>
+                <th>Downloads</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="fileTable">
+
+        {% for file in files %}
+
+        <tr>
+
+            <td>{{ file.filename }}</td>
+
+            <td>{{ file.downloads }}</td>
+
+            <td>
+                <a href="/download/{{ file.id }}">
+                    Download
+                </a>
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+```
+
+</div>
+
+<script>
+
+const searchInput =
+document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function(){
+
+let filter =
+this.value.toLowerCase();
+
+let rows =
+document.querySelectorAll("#fileTable tr");
+
+rows.forEach(function(row){
+
+let text =
+row.innerText.toLowerCase();
+
+row.style.display =
+text.includes(filter)
+? ""
+: "none";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

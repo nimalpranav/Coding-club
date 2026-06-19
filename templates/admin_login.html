@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Admin Login - Coding Club</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="auth-container">
+
+```
+<div class="auth-card">
+
+    <h1>Coding Club</h1>
+    <h2>Admin Login</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="alert">{{ msg }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Admin Username"
+            required
+        >
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Admin Password"
+            required
+        >
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+</body>
+</html>

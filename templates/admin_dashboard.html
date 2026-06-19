@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Coding Club</h2>
+
+```
+<a href="/admin">Dashboard</a>
+<a href="/upload">Upload File</a>
+<a href="/logout">Logout</a>
+```
+
+</div>
+
+<div class="main-content">
+
+```
+<h1>Admin Dashboard</h1>
+
+<div class="stats-container">
+
+    <div class="card">
+        <h3>Students</h3>
+        <p>{{ students|length }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Files</h3>
+        <p>{{ files|length }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Downloads</h3>
+        <p>{{ total_downloads }}</p>
+    </div>
+
+</div>
+
+<br>
+
+<h2>Students</h2>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+    </tr>
+
+    {% for student in students %}
+    <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.username }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<br><br>
+
+<h2>Files</h2>
+
+<table>
+
+    <tr>
+        <th>Name</th>
+        <th>Downloads</th>
+        <th>Delete</th>
+    </tr>
+
+    {% for file in files %}
+
+    <tr>
+
+        <td>{{ file.filename }}</td>
+
+        <td>{{ file.downloads }}</td>
+
+        <td>
+            <a href="/delete-file/{{ file.id }}">
+                Delete
+            </a>
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+```
+
+</div>
+
+</body>
+</html>
