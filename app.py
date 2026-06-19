@@ -33,7 +33,7 @@ db = SQLAlchemy(app)
 # ==========================
 
 ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "CodingClub123"
+ADMIN_PASSWORD = "priya"
 
 UPLOAD_FOLDER = "uploads"
 
